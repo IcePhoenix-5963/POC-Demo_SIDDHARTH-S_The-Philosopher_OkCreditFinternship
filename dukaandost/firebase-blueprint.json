@@ -1,0 +1,199 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information representing whether they are a Shopkeeper or a Job Seeker.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique user ID matching their Firebase Authentication UID"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["shopkeeper", "seeker"],
+          "description": "The role of the user inside the app"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Full name of the user"
+        },
+        "contactNumber": {
+          "type": "string",
+          "description": "Contact phone number or email"
+        },
+        "skills": {
+          "type": "string",
+          "description": "Skills of the job seeker (comma-separated or text)"
+        },
+        "location": {
+          "type": "string",
+          "description": "User's current city or locality"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The standard server timestamp when the profile was generated"
+        }
+      },
+      "required": ["id", "role", "fullName", "contactNumber", "createdAt"]
+    },
+    "ShopJob": {
+      "title": "ShopJob",
+      "description": "A job opening posted by a shopkeeper detailing the shop and requirements.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the job post"
+        },
+        "shopName": {
+          "type": "string",
+          "description": "Name of the shop"
+        },
+        "shopType": {
+          "type": "string",
+          "description": "Type of shop (e.g., Grocery, Bakery, Boutique, Electronics)"
+        },
+        "location": {
+          "type": "string",
+          "description": "Physical address or location of the shop"
+        },
+        "ownerName": {
+          "type": "string",
+          "description": "Name of the shop owner"
+        },
+        "ownerContact": {
+          "type": "string",
+          "description": "Contact details of the owner"
+        },
+        "scale": {
+          "type": "string",
+          "enum": ["small", "medium"],
+          "description": "Scale of the shop"
+        },
+        "expectedSkills": {
+          "type": "string",
+          "description": "Required skills or qualities from workers"
+        },
+        "salaryEstimate": {
+          "type": "string",
+          "description": "Salary details, estimated monthly amount or range"
+        },
+        "description": {
+          "type": "string",
+          "description": "General description of the job role and shop"
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "The User ID of the shopkeeper who created this listing"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when this listing was posted"
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether the job position is active"
+        }
+      },
+      "required": [
+        "id",
+        "shopName",
+        "shopType",
+        "location",
+        "ownerName",
+        "ownerContact",
+        "scale",
+        "expectedSkills",
+        "salaryEstimate",
+        "createdBy",
+        "createdAt",
+        "isActive"
+      ]
+    },
+    "JobApplication": {
+      "title": "JobApplication",
+      "description": "An application submitted by a seeker for a posted shop job.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the application"
+        },
+        "jobId": {
+          "type": "string",
+          "description": "Linked shop job identifier"
+        },
+        "shopName": {
+          "type": "string",
+          "description": "Denormalized shop name for direct query viewing"
+        },
+        "shopLocation": {
+          "type": "string",
+          "description": "Denormalized shop location for easier list reference"
+        },
+        "applicantId": {
+          "type": "string",
+          "description": "User ID of the job seeker who applied"
+        },
+        "applicantName": {
+          "type": "string",
+          "description": "Full name of the job seeker applicant"
+        },
+        "applicantContact": {
+          "type": "string",
+          "description": "Contact phone/email of the applicant"
+        },
+        "applicantSkills": {
+          "type": "string",
+          "description": "Applicant's declared skills"
+        },
+        "applicantExperience": {
+          "type": "string",
+          "description": "Brief summary of applicant experience"
+        },
+        "coverLetter": {
+          "type": "string",
+          "description": "Cover letter text or brief notes from applicant"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "accepted", "rejected"],
+          "description": "Current status of the application"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the application was sent"
+        }
+      },
+      "required": [
+        "id",
+        "jobId",
+        "shopName",
+        "shopLocation",
+        "applicantId",
+        "applicantName",
+        "applicantContact",
+        "status",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/userProfiles/{userId}": {
+      "schema": "UserProfile",
+      "description": "Contains user registration profiles mapped by authentication UID"
+    },
+    "/shopJobs/{jobId}": {
+      "schema": "ShopJob",
+      "description": "Contains job vacancies created by shopkeepers"
+    },
+    "/jobApplications/{applicationId}": {
+      "schema": "JobApplication",
+      "description": "Contains job applications filed by job seekers"
+    }
+  }
+}

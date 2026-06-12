@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-indigo: #4F46E5;
+  --color-brand-indigo-hover: #4338ca;
+  --color-brand-secondary: #EEF2FF;
+  --color-brand-warm: #FDFCF8;
+}
+
+body {
+  background-color: #FDFCF8;
+  color: #1F2937;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Custom classes for the design theme match */
+.vibrant-btn {
+  background-color: #4F46E5;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 14px;
+  transition: all 0.2s ease-in-out;
+}
+.vibrant-btn:hover {
+  background-color: #4338ca;
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.secondary-btn {
+  background-color: #F3F4F6;
+  color: #374151;
+  font-weight: 700;
+  border-radius: 14px;
+  transition: all 0.2s ease-in-out;
+}
+.secondary-btn:hover {
+  background-color: #E5E7EB;
+}
+
+.job-pill {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+.job-pill-blue {
+  background-color: #DBEAFE;
+  color: #1E40AF;
+}
+.job-pill-green {
+  background-color: #DCFCE7;
+  color: #166534;
+}
+.job-pill-orange {
+  background-color: #FFEDD5;
+  color: #9A3412;
+}
+
+.shopkeeper-widget-header {
+  border-top: 6px solid #4F46E5;
+}
